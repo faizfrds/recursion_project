@@ -26,17 +26,63 @@ public class RecursiveList<T> implements ListInterface<T> {
   public void insertAtBeginning(T elem) {
       //TODO: Implement this method.
 
+      Node<T> newNode = new Node<T>(elem, head);
+      newNode.setNext(head);
+      head = newNode;
+
+
   }
 
   @Override
   public void insertAtEnd(T elem) {
       //TODO: Implement this method.
 
+      Node<T> currNode = recursiveAdd(head); //finding the node of the last element
+      Node<T> newNode = new Node<T>(elem, null); //creating new node for the element where next node is null since it is the last
+
+      currNode.setNext(newNode);
   }
+
+  private Node<T> recursiveAdd(Node<T> currNode){
+
+    if (currNode.getNext() == null){
+
+      //Node<T> addElement = new Node<T>(elem, null);
+      //return addElement;
+      return currNode;
+
+    }
+
+    else{
+      return recursiveAdd(elem, currNode.getNext());
+    }
+  }
+
+
 
   @Override
   public void insertAt(int index, T elem) {
       //TODO: Implement this method.
+
+      Node<T> newIndexAt = insertIndex(0, head, index, elem);
+      Node<T> insertNode = new Node<T>(elem, newIndexAt);
+
+      newIndexAt.setData(elem);
+
+  }
+
+  private Node<T> insertIndex(int i, Node<T> indexNode, int index, T element){
+
+    if (i == index-1){
+
+      Node<T> nextNode = indexNode.getNext();
+      //Node<T> insertNode = new Node<T>(element, nextNode);
+      return nextNode;
+    }
+
+    else{
+      return insertIndex(i++, indexNode.getNext(), index, element);
+    }
 
   }
 
@@ -44,6 +90,9 @@ public class RecursiveList<T> implements ListInterface<T> {
   public T removeFirst() {
     T removedItem = null;
       //TODO: Implement this method.
+
+      removedItem = head.getData();
+      head.setNext((head.getNext()).getNext());
 
     return removedItem;
   }
@@ -69,6 +118,8 @@ public class RecursiveList<T> implements ListInterface<T> {
     T item = null;
       //TODO: Implement this method.
 
+      item = head.getData();
+
     return item;
   }
 
@@ -76,8 +127,21 @@ public class RecursiveList<T> implements ListInterface<T> {
   public T getLast() {
     T item = null;
       //TODO: Implement this method.
+      Node<T> currNode = head;
+      item = getLastRecursive(currNode).getData();
 
     return item;
+  }
+
+  public Node<T> getLastRecursive(Node<T> currNode){
+
+    if (currNode.getNext() != null){
+      return (getLastRecursive(currNode.getNext()));
+    }
+
+    else{
+      return currNode;
+    }
   }
 
   @Override
