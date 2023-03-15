@@ -1,6 +1,7 @@
 package app;
 
 import java.util.Iterator;
+import java.util.ListIterator;
 
 public class RecursiveList<T> implements ListInterface<T> {
 
@@ -29,32 +30,34 @@ public class RecursiveList<T> implements ListInterface<T> {
       Node<T> newNode = new Node<T>(elem, head);
       newNode.setNext(head);
       head = newNode;
-
-
   }
 
   @Override
   public void insertAtEnd(T elem) {
       //TODO: Implement this method.
 
-      Node<T> currNode = recursiveAdd(head); //finding the node of the last element
-      Node<T> newNode = new Node<T>(elem, null); //creating new node for the element where next node is null since it is the last
+      if (head == null){ //if head is empty, then it only needs to add that element
+        Node<T> firstNode = new Node<T>(elem, null);
+        head = firstNode;
+      }
 
-      currNode.setNext(newNode);
+      else if (head != null){
+        Node<T> currNode = recursiveAddLast(head); //finding the node of the last element
+        Node<T> newNode = new Node<T>(elem, null); //creating new node for the element after last node, if size is not 1
+        currNode.setNext(newNode);
+        System.out.println(newNode.getData()+"ABC");
+      }
+      
+      
   }
 
-  private Node<T> recursiveAdd(Node<T> currNode){
+  private Node<T> recursiveAddLast(Node<T> currNode){ //recursive helper method that will traverse through the linked list
 
-    if (currNode.getNext() == null){
-
-      //Node<T> addElement = new Node<T>(elem, null);
-      //return addElement;
+    if (currNode.getNext() == null){ //if next node is null, then we know that it is the last node
       return currNode;
-
     }
-
-    else{
-      return recursiveAdd(elem, currNode.getNext());
+    else{ //else continue to traverse linked list
+      return recursiveAddLast(currNode.getNext());
     }
   }
 
@@ -64,24 +67,25 @@ public class RecursiveList<T> implements ListInterface<T> {
   public void insertAt(int index, T elem) {
       //TODO: Implement this method.
 
-      Node<T> newIndexAt = insertIndex(0, head, index, elem);
-      Node<T> insertNode = new Node<T>(elem, newIndexAt);
+      Node<T> nodeAtIndex = insertIndex(0, head, index);
+      Node<T> nextNode = nodeAtIndex.getNext();
+      
+      Node<T> newNode = new Node<T>(elem, nextNode); //pointing the next node as current index's next node
+      nodeAtIndex.setNext(newNode); //current index's next node changed to the point to the new node
 
-      newIndexAt.setData(elem);
+
 
   }
 
-  private Node<T> insertIndex(int i, Node<T> indexNode, int index, T element){
+  private Node<T> insertIndex(int i, Node<T> indexNode, int index){
 
-    if (i == index-1){
+    if (i == index){ //when at the target index, return the current index node
 
-      Node<T> nextNode = indexNode.getNext();
-      //Node<T> insertNode = new Node<T>(element, nextNode);
-      return nextNode;
+      return indexNode;
     }
 
     else{
-      return insertIndex(i++, indexNode.getNext(), index, element);
+      return insertIndex(i++, indexNode.getNext(), index);
     }
 
   }
@@ -92,7 +96,8 @@ public class RecursiveList<T> implements ListInterface<T> {
       //TODO: Implement this method.
 
       removedItem = head.getData();
-      head.setNext((head.getNext()).getNext());
+      head = head.getNext(); //changing the head to the next node
+      head.setNext(head.getNext());
 
     return removedItem;
   }
@@ -102,7 +107,21 @@ public class RecursiveList<T> implements ListInterface<T> {
     T removedItem = null;
       //TODO: Implement this method.
 
+      removedItem = recursiveRemoveLast(head).getNext().getData();
+      recursiveRemoveLast(head).setNext(null); //node before last will now point to null, hence removing the last node
+
     return removedItem;
+  }
+
+  private Node<T> recursiveRemoveLast(Node<T> currNode){
+
+    if (currNode.getNext().getNext() == null){ //if the next next node is null, then it is the node before last
+      return currNode;
+    }
+
+    else{
+      return recursiveRemoveLast(currNode.getNext());
+    }
   }
 
   @Override
@@ -110,7 +129,22 @@ public class RecursiveList<T> implements ListInterface<T> {
     T removedItem = null;
       //TODO: Implement this method.
 
+    removedItem = recursiveRemoveAt(i, 0, head).getNext().getData();
+    recursiveRemoveAt(i, 0,head).setNext(recursiveRemoveAt(i, 0, head).getNext().getNext()); //leapfrogging so that it will skip over the desired removal node
+
     return removedItem;
+  }
+
+  private Node<T> recursiveRemoveAt(int i, int index, Node<T> currNode){
+
+    if (index == i-1){
+      return currNode;
+    }
+
+    else{
+      return recursiveRemoveAt(i, index++, currNode.getNext());
+    }
+
   }
 
   @Override
@@ -126,21 +160,20 @@ public class RecursiveList<T> implements ListInterface<T> {
   @Override
   public T getLast() {
     T item = null;
-      //TODO: Implement this method.
-      Node<T> currNode = head;
-      item = getLastRecursive(currNode).getData();
+      //TODO: Implement this method
+      item = getLastRecursive(head).getData();
 
     return item;
   }
 
   public Node<T> getLastRecursive(Node<T> currNode){
 
-    if (currNode.getNext() != null){
-      return (getLastRecursive(currNode.getNext()));
+    if (currNode.getNext() == null){
+      return currNode;
     }
 
     else{
-      return currNode;
+      return getLastRecursive(currNode.getNext());
     }
   }
 
@@ -149,21 +182,69 @@ public class RecursiveList<T> implements ListInterface<T> {
     T item = null;
       //TODO: Implement this method.
 
-    return item;
+    return indexOfRecursive(0, i, head);
   }
+
+  private T indexOfRecursive(int index, int i, Node<T> currNode){
+
+    if (i == index){
+      
+      return currNode.getData() ;
+    }
+
+    else{
+
+      return indexOfRecursive(index++, i, currNode.getNext());
+    }
+  }
+
+
 
   @Override
   public void removeElement(T elem) {
       //TODO: Implement this method.
 
+    Node<T> currNode = removeAtRecursive(elem, head);
+    currNode.setNext(currNode.getNext().getNext()); //leapfrogging over the item needed to be removed
+
   }
+
+  private Node<T> removeAtRecursive(T elem, Node<T> currNode){
+
+    if (elem == currNode.getData()){ //if next item is target item, then return this node
+      return currNode;
+    }
+
+    if (currNode.getNext() == null){ //item does not exist
+      throw new ItemNotFoundException("Item was not found in the list");
+    }
+
+    else{
+      return removeAtRecursive(elem, currNode.getNext());
+    }
+  }
+
+
 
   @Override
   public int indexOf(T elem) {
     int index = -1;
       //TODO: Implement this method.
 
-    return index;
+    return indexOfRecursive(elem, 0, head);
+  }
+
+  private int indexOfRecursive(T elem, int i, Node<T> currNode){
+
+    if (elem == currNode.getData()){
+      
+      return i;
+    }
+
+    else{
+
+      return indexOfRecursive(elem, i++, currNode.getNext());
+    }
   }
 
 
@@ -172,6 +253,10 @@ public class RecursiveList<T> implements ListInterface<T> {
     boolean empty = false;
       //TODO: Implement this method.
 
+      if (head == null){
+        empty = true;
+      }
+
     return empty;
   }
 
@@ -179,7 +264,8 @@ public class RecursiveList<T> implements ListInterface<T> {
   public Iterator<T> iterator() {
     Iterator<T> iter = null;
       //TODO: Implement this method.
-
-   return iter;
+   
+      Iterator<T> iterate = new LinkedNodeIterator<>(head);
+      return iterate;
   }
 }
