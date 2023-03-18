@@ -322,9 +322,9 @@ public class RecursiveList<T> implements ListInterface<T> {
       return i;
     }
 
-    else if (currNode.getNext() == null){
+    /*else if (currNode.getNext() == null){
       throw new IndexOutOfBoundsException("aa");
-    }
+    }*/
 
     else{
       return indexOfRecursive(elem, i+1, currNode.getNext());
