@@ -110,11 +110,11 @@ public class RecursiveList<T> implements ListInterface<T> {
     T removedItem = null;
       //TODO: Implement this method.
 
-      if (isEmpty() == true){
+      if (head == null){
         throw new IllegalStateException();
       }
 
-      if (head.getNext() == null){
+      else if (head.getNext() == null){
 
         head = null;
         size--;
@@ -122,9 +122,9 @@ public class RecursiveList<T> implements ListInterface<T> {
 
       else{
         removedItem = head.getData();
-      head = head.getNext(); //changing the head to the next node
-      head.setNext(head.getNext());
-      size--;
+        head = head.getNext(); //changing the head to the next node
+        head.setNext(head.getNext());
+        size--;
       }
 
     return removedItem;
