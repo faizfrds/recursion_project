@@ -176,10 +176,19 @@ public class RecursiveList<T> implements ListInterface<T> {
     }
 
     else{
-      removedItem = removeAtRecursive(i, 0, head).getNext().getData();
-      removeAtRecursive(i, 0,head).setNext(removeAtRecursive(i, 0, head).getNext().getNext()); //leapfrogging so that it will skip over the desired removal node
-      size--;
-      return removedItem;
+      Node<T> removedItemNode = removeAtRecursive(i, 0, head).getNext();
+
+      if (removedItemNode.getNext().getNext() == null){
+        removedItemNode.setNext(null);
+        size--;
+      }
+
+      else{
+        removeAtRecursive(i, 0,head).setNext(removeAtRecursive(i, 0, head).getNext().getNext()); //leapfrogging so that it will skip over the desired removal node
+        size--;
+      }
+      
+      return removedItemNode.getData();
     }
     
   }
@@ -188,6 +197,11 @@ public class RecursiveList<T> implements ListInterface<T> {
 
     if (index == i-1){
       return currNode;
+    }
+
+    else if(currNode.getNext() == null){
+
+      throw new IndexOutOfBoundsException();
     }
 
     else{
@@ -290,9 +304,9 @@ public class RecursiveList<T> implements ListInterface<T> {
       throw new ItemNotFoundException();
     }
 
-    /*if (elem == null){
+    else if (elem == null){
       throw new NullPointerException();
-    }*/
+    }
 
     else{
       return indexOfRecursive(elem, 0, head);
