@@ -290,9 +290,9 @@ public class RecursiveList<T> implements ListInterface<T> {
       throw new ItemNotFoundException();
     }
 
-    if (elem == null){
+    /*if (elem == null){
       throw new NullPointerException();
-    }
+    }*/
 
     else{
       return indexOfRecursive(elem, 0, head);
