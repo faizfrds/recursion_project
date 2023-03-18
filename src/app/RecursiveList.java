@@ -311,7 +311,7 @@ public class RecursiveList<T> implements ListInterface<T> {
       throw new NullPointerException("npe");
     }
 
-    else if (head == elem){
+    else if (head.getData() == elem){
       return 0;
     }
 
