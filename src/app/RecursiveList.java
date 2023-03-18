@@ -172,7 +172,7 @@ public class RecursiveList<T> implements ListInterface<T> {
       //TODO: Implement this method.
 
     if (head == null){
-      throw new NullPointerException();
+      throw new IndexOutOfBoundsException();
     }
 
     else if (i == 0){
@@ -183,8 +183,7 @@ public class RecursiveList<T> implements ListInterface<T> {
       Node<T> removedItemNode = removeAtRecursive(i, 0, head).getNext();
 
       if (removedItemNode.getNext() == null){
-        return removeLast();
-        
+        return removeLast(); 
       }
 
       else{
