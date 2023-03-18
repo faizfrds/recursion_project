@@ -307,12 +307,12 @@ public class RecursiveList<T> implements ListInterface<T> {
       throw new NullPointerException("inf");
     }
 
-    else if (elem == null){
-      throw new NullPointerException("npe");
-    }
-
     else if (head.getData() == elem){
       return 0;
+    }
+
+    else if (elem == null){
+      throw new NullPointerException("npe");
     }
 
     else{
