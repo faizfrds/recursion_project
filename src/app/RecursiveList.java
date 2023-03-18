@@ -175,6 +175,10 @@ public class RecursiveList<T> implements ListInterface<T> {
       throw new IndexOutOfBoundsException();
     }
 
+    else if (i == 0){
+      return removeFirst();
+    }
+
     else{
       Node<T> removedItemNode = removeAtRecursive(i, 0, head).getNext();
 
@@ -317,6 +321,10 @@ public class RecursiveList<T> implements ListInterface<T> {
 
     if (elem == currNode.getData()){
       return i;
+    }
+
+    else if (currNode.getNext() == null){
+      throw new IndexOutOfBoundsException();
     }
 
     else{
