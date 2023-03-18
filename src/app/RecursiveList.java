@@ -178,13 +178,13 @@ public class RecursiveList<T> implements ListInterface<T> {
     else{
       Node<T> removedItemNode = removeAtRecursive(i, 0, head).getNext();
 
-      if (removedItemNode.getNext().getNext() == null){
+      if (removedItemNode.getNext() == null){
         removedItemNode.setNext(null);
         size--;
       }
 
       else{
-        removeAtRecursive(i, 0,head).setNext(removeAtRecursive(i, 0, head).getNext().getNext()); //leapfrogging so that it will skip over the desired removal node
+        removedItemNode.setNext(removedItemNode.getNext()); //leapfrogging so that it will skip over the desired removal node
         size--;
       }
       
