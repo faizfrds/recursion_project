@@ -5,10 +5,19 @@ import java.util.Iterator;
 public class LinkedListMain {
     public static void main(String[] args) {
         ListInterface<Integer> list = new RecursiveList<Integer>();
-        list.insertAtEnd(22);
+        /*list.insertAtEnd(22);
         list.insertAtEnd(900);
         list.insertAtEnd(143);
-        list.insertAtEnd(8);
+        list.insertAtEnd(8);*/
+
+        list.insertAtEnd(null);
+		list.insertAtEnd(5);
+		list.insertAt(1,4);
+		list.insertAt(1, 3);
+		list.insertAtEnd(7);
+		list.insertAtBeginning(1);
+        list.insertAt(5,6);
+
         System.out.println(printList(list));
         list.removeFirst();
         System.out.println(printList(list));

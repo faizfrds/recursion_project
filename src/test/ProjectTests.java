@@ -50,6 +50,7 @@ public class ProjectTests {
 		list.insertAtEnd("G");
 		list.insertAtBeginning("A");
 		list.insertAt(5, "F");
+		
 
 		assertEquals("Checking position 0.", "A", list.getAt(0));
 		assertEquals("Checking position 1.", "B", list.getAt(1));
