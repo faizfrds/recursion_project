@@ -305,11 +305,11 @@ public class RecursiveList<T> implements ListInterface<T> {
       //TODO: Implement this method.
 
     if (head == null){
-      throw new ItemNotFoundException();
+      throw new NullPointerException("inf");
     }
 
     else if (elem == null){
-      throw new NullPointerException();
+      throw new NullPointerException("npe");
     }
 
     else{
