@@ -320,7 +320,7 @@ public class RecursiveList<T> implements ListInterface<T> {
 
     if (currNode.getNext() == null && elem != currNode.getData()){
 
-      throw new NullPointerException("a");
+      return -1;
     }
     else if (elem == currNode.getData()){
       return i;
