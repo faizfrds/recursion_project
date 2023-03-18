@@ -44,7 +44,7 @@ public class RecursiveList<T> implements ListInterface<T> {
       //TODO: Implement this method.
 
       if (elem == null){
-        throw new NullPointerException();
+        throw new NullPointerException("A");
       }
 
       else if (head == null){ //if head is empty, then it only needs to add that element
@@ -206,8 +206,6 @@ public class RecursiveList<T> implements ListInterface<T> {
     else if (index == i-1){
       return currNode;
     }
-
-    else 
 
     else{
       return removeAtRecursive(i, index+1, currNode.getNext());

@@ -10,7 +10,7 @@ public class LinkedListMain {
         list.insertAtEnd(143);
         list.insertAtEnd(8);*/
 
-        list.insertAtEnd(null);
+        list.insertAtEnd(3);
 		list.insertAtEnd(5);
 		list.insertAt(1,4);
 		list.insertAt(1, 3);
