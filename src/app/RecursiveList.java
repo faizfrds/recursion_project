@@ -318,7 +318,11 @@ public class RecursiveList<T> implements ListInterface<T> {
 
   private int indexOfRecursive(T elem, int i, Node<T> currNode){
 
-    if (elem == currNode.getData()){
+    if (currNode.getNext() == null && elem != currNode.getData()){
+
+      throw new NullPointerException();
+    }
+    else if (elem == currNode.getData()){
       return i;
     }
 
