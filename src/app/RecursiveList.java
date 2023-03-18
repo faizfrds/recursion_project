@@ -179,11 +179,13 @@ public class RecursiveList<T> implements ListInterface<T> {
       throw new IndexOutOfBoundsException();
     }
 
-    removedItem = recursiveRemoveAt(i, 0, head).getNext().getData();
-    recursiveRemoveAt(i, 0,head).setNext(recursiveRemoveAt(i, 0, head).getNext().getNext()); //leapfrogging so that it will skip over the desired removal node
-    size--;
-
-    return removedItem;
+    else{
+      removedItem = recursiveRemoveAt(i, 0, head).getNext().getData();
+      recursiveRemoveAt(i, 0,head).setNext(recursiveRemoveAt(i, 0, head).getNext().getNext()); //leapfrogging so that it will skip over the desired removal node
+      size--;
+      return removedItem;
+    }
+    
   }
 
   private Node<T> recursiveRemoveAt(int i, int index, Node<T> currNode){
@@ -296,7 +298,9 @@ public class RecursiveList<T> implements ListInterface<T> {
       throw new NullPointerException();
     }
 
-    return indexOfRecursive(elem, 0, head);
+    else{
+      return indexOfRecursive(elem, 0, head);
+    }
   }
 
   private int indexOfRecursive(T elem, int i, Node<T> currNode){
