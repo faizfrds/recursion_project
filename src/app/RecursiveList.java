@@ -305,7 +305,7 @@ public class RecursiveList<T> implements ListInterface<T> {
       return i;
     }
 
-    else if (currNode.getNext() == null){
+    else if (currNode.getNext() == null && elem != currNode.getData()){
       throw new ItemNotFoundException("Item not found");
     }
 
