@@ -10,22 +10,26 @@ public class LinkedListMain {
         list.insertAtEnd(143);
         list.insertAtEnd(8);*/
 
-        list.insertAtEnd(3);
+        /*list.insertAtEnd(3);
 		list.insertAtEnd(5);
 		list.insertAt(1,4);
 		list.insertAt(1, 3);
 		list.insertAtEnd(7);
 		list.insertAtBeginning(1);
-        list.insertAt(5,6);
+        list.insertAt(5,6);*/
 
-        System.out.println(printList(list));
-        list.removeFirst();
+        list.insertAtEnd(3);
+        list.insertAtBeginning(2);
         System.out.println(printList(list));
         list.removeLast();
         System.out.println(printList(list));
+        System.out.println(list.indexOf(2)); 
+        //System.out.println(list.isEmpty());
+        /*list.removeLast();
+        System.out.println(printList(list));
         list.removeAt(1);
         System.out.println(printList(list));
-        list.removeElement(100); // should throw an ItemNotFoundException
+        list.removeElement(100); // should throw an ItemNotFoundException*/
     }
 
     public static String printList(ListInterface<Integer> list) {
