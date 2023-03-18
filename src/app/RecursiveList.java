@@ -198,14 +198,16 @@ public class RecursiveList<T> implements ListInterface<T> {
 
   private Node<T> removeAtRecursive(int i, int index, Node<T> currNode){
 
-    if (index == i-1){
-      return currNode;
-    }
-
-    else if(currNode.getNext() == null){
+    if(currNode.getNext() == null){
 
       throw new IndexOutOfBoundsException();
     }
+
+    else if (index == i-1){
+      return currNode;
+    }
+
+    else 
 
     else{
       return removeAtRecursive(i, index+1, currNode.getNext());
