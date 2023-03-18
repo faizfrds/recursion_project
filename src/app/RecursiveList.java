@@ -290,11 +290,11 @@ public class RecursiveList<T> implements ListInterface<T> {
     int index = -1;
       //TODO: Implement this method.
 
-    if (head == null){
+    /*if (head == null){
       throw new ItemNotFoundException();
-    }
+    }*/
 
-    else if (elem == null){
+    if (elem == null){
       throw new NullPointerException();
     }
 
