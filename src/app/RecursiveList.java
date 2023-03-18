@@ -172,30 +172,26 @@ public class RecursiveList<T> implements ListInterface<T> {
       //TODO: Implement this method.
 
     if (head == null){
-      throw new IllegalStateException();
-    }
-
-    else if (i > size()-1){
       throw new IndexOutOfBoundsException();
     }
 
     else{
-      removedItem = recursiveRemoveAt(i, 0, head).getNext().getData();
-      recursiveRemoveAt(i, 0,head).setNext(recursiveRemoveAt(i, 0, head).getNext().getNext()); //leapfrogging so that it will skip over the desired removal node
+      removedItem = removeAtRecursive(i, 0, head).getNext().getData();
+      removeAtRecursive(i, 0,head).setNext(removeAtRecursive(i, 0, head).getNext().getNext()); //leapfrogging so that it will skip over the desired removal node
       size--;
       return removedItem;
     }
     
   }
 
-  private Node<T> recursiveRemoveAt(int i, int index, Node<T> currNode){
+  private Node<T> removeAtRecursive(int i, int index, Node<T> currNode){
 
     if (index == i-1){
       return currNode;
     }
 
     else{
-      return recursiveRemoveAt(i, index+1, currNode.getNext());
+      return removeAtRecursive(i, index+1, currNode.getNext());
     }
 
   }
@@ -265,12 +261,12 @@ public class RecursiveList<T> implements ListInterface<T> {
   public void removeElement(T elem) {
       //TODO: Implement this method.
 
-    Node<T> currNode = removeAtRecursive(elem, head);
+    Node<T> currNode = removeElementRecursive(elem, head);
     currNode.setNext(currNode.getNext().getNext()); //leapfrogging over the item needed to be removed
     size--;
   }
 
-  private Node<T> removeAtRecursive(T elem, Node<T> currNode){
+  private Node<T> removeElementRecursive(T elem, Node<T> currNode){
 
     if (elem == currNode.getData()){ //if next item is target item, then return this node
       return currNode;
@@ -281,7 +277,7 @@ public class RecursiveList<T> implements ListInterface<T> {
     }
 
     else{
-      return removeAtRecursive(elem, currNode.getNext());
+      return removeElementRecursive(elem, currNode.getNext());
     }
   }
 
@@ -290,9 +286,9 @@ public class RecursiveList<T> implements ListInterface<T> {
     int index = -1;
       //TODO: Implement this method.
 
-    /*if (head == null){
+    if (head == null){
       throw new ItemNotFoundException();
-    }*/
+    }
 
     if (elem == null){
       throw new NullPointerException();
