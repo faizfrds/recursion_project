@@ -300,7 +300,7 @@ public class RecursiveList<T> implements ListInterface<T> {
 
   @Override
   public int indexOf(T elem) {
-    int index = -1;
+
       //TODO: Implement this method.
 
     if (head == null){
@@ -309,6 +309,10 @@ public class RecursiveList<T> implements ListInterface<T> {
 
     else if (elem == null){
       throw new NullPointerException("npe");
+    }
+
+    else if (head == elem){
+      return 0;
     }
 
     else{
