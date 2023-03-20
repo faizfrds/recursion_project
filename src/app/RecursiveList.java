@@ -33,6 +33,7 @@ public class RecursiveList<T> implements ListInterface<T> {
         throw new NullPointerException();
       }
 
+
       Node<T> newNode = new Node<T>(elem, head);
       head = newNode;
       size++;
@@ -48,7 +49,7 @@ public class RecursiveList<T> implements ListInterface<T> {
       }
 
       else if (head == null){ //if head is empty, then it only needs to add that element
-        Node<T> firstNode = new Node<T>(elem, null);
+        Node<T> firstNode = new Node<T>(elem, head);
         head = firstNode;
         size++;
       }
@@ -122,9 +123,7 @@ public class RecursiveList<T> implements ListInterface<T> {
 
       else{
         removedItem = head.getData();
-        //node <
         head = head.getNext(); //changing the head to the next node
-        head.setNext(head.getNext());
         size--;
       }
 
@@ -325,7 +324,7 @@ public class RecursiveList<T> implements ListInterface<T> {
 
     if (currNode.getNext() == null && elem != currNode.getData()){
 
-      return -1;
+      return -2;
     }
     else if (elem == currNode.getData()){
       return i;
