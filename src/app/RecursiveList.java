@@ -122,6 +122,7 @@ public class RecursiveList<T> implements ListInterface<T> {
 
       else{
         removedItem = head.getData();
+        //node <
         head = head.getNext(); //changing the head to the next node
         head.setNext(head.getNext());
         size--;

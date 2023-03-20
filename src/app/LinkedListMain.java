@@ -18,12 +18,12 @@ public class LinkedListMain {
 		list.insertAtBeginning(1);
         list.insertAt(5,6);*/
 
-        list.insertAtEnd(3);
-        list.insertAtBeginning(2);
+        list.insertAtBeginning(99);
+        list.insertAtEnd(11);
         System.out.println(printList(list));
-        list.removeLast();
+        list.removeFirst();
         System.out.println(printList(list));
-        System.out.println(list.indexOf(2)); 
+        System.out.println(list.indexOf(11)); 
         //System.out.println(list.isEmpty());
         /*list.removeLast();
         System.out.println(printList(list));
