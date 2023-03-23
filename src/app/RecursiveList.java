@@ -182,20 +182,21 @@ public class RecursiveList<T> implements ListInterface<T> {
     }
 
     else{
-      Node<T> removedItemNode = removeAtRecursive(i, 0, head).getNext();
+      Node<T> removedItemNode = removeAtRecursive(i, 0, head);
 
-      if (removedItemNode.getNext() == null){
-        return removeLast(); 
+      if (removedItemNode.getNext().getNext() == null){
+        return removeLast();
       }
 
       else{
+        removedItem = removedItemNode.getNext().getData();
         removedItemNode.setNext(removedItemNode.getNext()); //leapfrogging so that it will skip over the desired removal node
         size--;
       }
       
-      return removedItemNode.getData();
+
     }
-    
+    return removedItem;
   }
 
   private Node<T> removeAtRecursive(int i, int index, Node<T> currNode){
