@@ -144,6 +144,7 @@ public class RecursiveList<T> implements ListInterface<T> {
         removedItem = head.getData();
         head = null;
         size--;
+        return removedItem;
       }
 
       else{
@@ -329,10 +330,6 @@ public class RecursiveList<T> implements ListInterface<T> {
     else if (elem == currNode.getData()){
       return i;
     }
-
-    /*else if (currNode.getNext() == null){
-      throw new IndexOutOfBoundsException("aa");
-    }*/
 
     else{
       return indexOfRecursive(elem, i+1, currNode.getNext());
