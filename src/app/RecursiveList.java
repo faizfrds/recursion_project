@@ -189,12 +189,11 @@ public class RecursiveList<T> implements ListInterface<T> {
       }
 
       else{
+        Node<T> nextItem = removedItemNode.getNext().getNext();
         removedItem = removedItemNode.getNext().getData();
-        removedItemNode.setNext(removedItemNode.getNext()); //leapfrogging so that it will skip over the desired removal node
+        removedItemNode.setNext(nextItem); //leapfrogging so that it will skip over the desired removal node
         size--;
       }
-      
-
     }
     return removedItem;
   }
