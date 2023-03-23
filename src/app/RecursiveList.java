@@ -285,7 +285,15 @@ public class RecursiveList<T> implements ListInterface<T> {
     else if(elem == null){
       throw new ItemNotFoundException();
     }
-    
+
+    else if(head.getNext() == null && elem != head.getData()){
+      throw new ItemNotFoundException();
+    }
+
+    else if (head.getData() == elem){
+      head = null;
+    }
+
     else{
       Node<T> currNode = removeElementRecursive(elem, head);
 
@@ -300,7 +308,6 @@ public class RecursiveList<T> implements ListInterface<T> {
       }
       
     }
-    
   }
 
   private Node<T> removeElementRecursive(T elem, Node<T> currNode){
@@ -309,7 +316,7 @@ public class RecursiveList<T> implements ListInterface<T> {
       return currNode;
     }
 
-    if (currNode.getNext() == null){ //item does not exist
+    if (currNode.getNext().getNext() == null){ //item does not exist
       throw new ItemNotFoundException("Item was not found in the list");
     }
 
