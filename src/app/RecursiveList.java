@@ -182,7 +182,7 @@ public class RecursiveList<T> implements ListInterface<T> {
     }
 
     else{
-      Node<T> removedItemNode = removeAtRecursive(i, 0, head);
+      Node<T> removedItemNode = removeAtRecursive(i-1, 0, head);
 
       if (removedItemNode.getNext().getNext() == null){
         return removeLast();
@@ -201,18 +201,16 @@ public class RecursiveList<T> implements ListInterface<T> {
   private Node<T> removeAtRecursive(int i, int index, Node<T> currNode){
 
     if(currNode.getNext() == null){
-
       throw new IndexOutOfBoundsException();
     }
 
-    else if (index == i-1){
+    else if (index == i){
       return currNode;
     }
 
     else{
       return removeAtRecursive(i, index+1, currNode.getNext());
     }
-
   }
 
   @Override
@@ -280,18 +278,34 @@ public class RecursiveList<T> implements ListInterface<T> {
   public void removeElement(T elem) {
       //TODO: Implement this method.
 
-    Node<T> currNode = removeElementRecursive(elem, head);
-    currNode.setNext(currNode.getNext().getNext()); //leapfrogging over the item needed to be removed
-    size--;
+    if (isEmpty()){
+      throw new IndexOutOfBoundsException();
+    }
+    else{
+      Node<T> currNode = removeElementRecursive(elem, head);
+      Node<T> removedNode = currNode.getNext();
+
+      if (removedNode().getNext() == null){
+        
+        currNode.setNext(null);
+        size--;
+      }
+      else{
+        currNode.setNext(removedNode.getNext()); //leapfrogging over the item needed to be removed
+        size--;
+      }
+      
+    }
+    
   }
 
   private Node<T> removeElementRecursive(T elem, Node<T> currNode){
 
-    if (elem == currNode.getData()){ //if next item is target item, then return this node
+    if (elem == currNode.getNext().getData()){ //if next item is target item, then return this node
       return currNode;
     }
 
-    if (currNode.getNext() == null){ //item does not exist
+    else if (currNode.getNext() == null){ //item does not exist
       throw new ItemNotFoundException("Item was not found in the list");
     }
 
