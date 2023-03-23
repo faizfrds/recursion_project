@@ -281,6 +281,11 @@ public class RecursiveList<T> implements ListInterface<T> {
     if (isEmpty()){
       throw new IndexOutOfBoundsException();
     }
+
+    else if(elem == null){
+      throw new ItemNotFoundException();
+    }
+    
     else{
       Node<T> currNode = removeElementRecursive(elem, head);
 
