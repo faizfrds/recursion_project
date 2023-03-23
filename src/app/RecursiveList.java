@@ -148,16 +148,23 @@ public class RecursiveList<T> implements ListInterface<T> {
       }
 
       else{
-        removedItem = recursiveRemoveLast(head).getNext().getData();
-        recursiveRemoveLast(head).setNext(null); //node before last will now point to null, hence removing the last node
-        size--;
-      }
-      
+        Node<T> removedItemNode = recursiveRemoveLast(head);
+        removedItemNode.setNext(null);
 
-    return removedItem;
+        return removedItemNode.getNext().getData();
+      }
+
+      /*else{
+        Node<T> removedItemNode = recursiveRemoveLast(head);
+
+        //removedItemNode.setNext(null); //node before last will now point to null, hence removing the last node
+        return removedItemNode.getNext().getData();
+        size--;
+      }*/
+    
   }
 
-  private Node<T> recursiveRemoveLast(Node<T> currNode){
+  public Node<T> recursiveRemoveLast(Node<T> currNode){
 
     if (currNode.getNext().getNext() == null){ //if the next next node is null, then it is the node before last
       return currNode;
