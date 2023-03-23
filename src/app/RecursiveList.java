@@ -279,7 +279,7 @@ public class RecursiveList<T> implements ListInterface<T> {
       //TODO: Implement this method.
 
     if (isEmpty()){
-      throw new IndexOutOfBoundsException();
+      throw new NullPointerException();
     }
 
     else if(elem == null){
