@@ -291,7 +291,8 @@ public class RecursiveList<T> implements ListInterface<T> {
     }
 
     else if (head.getData() == elem){
-      head = null;
+      head = head.getNext();
+      size--;
     }
 
     else{

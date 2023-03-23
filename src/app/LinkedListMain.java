@@ -20,10 +20,9 @@ public class LinkedListMain {
 
         list.insertAtBeginning(99);
         list.insertAtEnd(11);
-        list.insertAtEnd(22);
-        list.insertAtEnd(19);
         System.out.println(printList(list));
-        System.out.println(list.indexOf(99)); 
+        list.removeElement(99);
+        System.out.println(list.size());
         //System.out.println(list.isEmpty());
         /*list.removeLast();
         System.out.println(printList(list));
