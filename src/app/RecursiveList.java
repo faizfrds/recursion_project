@@ -283,7 +283,7 @@ public class RecursiveList<T> implements ListInterface<T> {
     }
 
     else if(elem == null){
-      throw new ItemNotFoundException();
+      throw new NullPointerException();
     }
 
     else if(head.getNext() == null && elem != head.getData()){
