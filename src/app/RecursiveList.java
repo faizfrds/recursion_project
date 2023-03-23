@@ -150,8 +150,7 @@ public class RecursiveList<T> implements ListInterface<T> {
       else{
         Node<T> removedItemNode = recursiveRemoveLast(head);
         removedItemNode.setNext(null);
-
-        return removedItemNode.getNext().getData();
+        removedItem = removedItemNode.getNext().getData();
       }
 
       /*else{
@@ -161,6 +160,8 @@ public class RecursiveList<T> implements ListInterface<T> {
         return removedItemNode.getNext().getData();
         size--;
       }*/
+
+      return removedItem;
     
   }
 
