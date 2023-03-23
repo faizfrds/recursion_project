@@ -149,8 +149,8 @@ public class RecursiveList<T> implements ListInterface<T> {
 
       else{
         Node<T> removedItemNode = recursiveRemoveLast(head);
-        removedItemNode.setNext(null);
         removedItem = removedItemNode.getNext().getData();
+        removedItemNode.setNext(null);
       }
 
       /*else{
